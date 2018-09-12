@@ -42,16 +42,16 @@ type Event struct {
 
 func init() {
 
-	http.HandleFunc("/slack/ephe", handleEphe)
+	http.HandleFunc("/slack/ephe", handleEphi)
 	http.HandleFunc("/slack/del", handleDeleteMsg)
 	http.HandleFunc("/_ah/warmup", handleWarmup)
 }
 
 
 
-func handleEphe(w http.ResponseWriter, r *http.Request) {
+func handleEphi(w http.ResponseWriter, r *http.Request) {
 	ctx := appengine.NewContext(r)
-	if token != "" && r.PostFormValue("token") != token {
+	if Token != "" && r.PostFormValue("token") != Token {
 		http.Error(w, "Invalid Slack token.", http.StatusBadRequest)
 		return
 	}

@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	token              = ""
+	Token              = ""
 	DefaultDelay       = 15
 	AccessToken  = ""
 )
@@ -24,7 +24,7 @@ func BytesToString(data []byte) string {
 func getPorjectId(ctx context.Context) string {
 	if appengine.IsDevAppServer() {
 		// For local development return your project id
-		return "api-project-613886847980"
+		return "my-project"
 
 	}
 	return appengine.AppID(ctx)
@@ -33,7 +33,7 @@ func getPorjectId(ctx context.Context) string {
 func SetupConfig(ctx context.Context, appconfig AppConfig) error {
 	data, _ := base64.StdEncoding.DecodeString(appconfig.Token)
 	res, _ := decrypt(ctx, data)
-	token = BytesToString(res)
+	Token = BytesToString(res)
 	data, _ = base64.StdEncoding.DecodeString(appconfig.AccessToken)
 	res, _ = decrypt(ctx, data)
 	AccessToken = BytesToString(res)
